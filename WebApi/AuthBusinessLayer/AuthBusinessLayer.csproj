@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AuthService\AuthService.csproj" />
+    <ProjectReference Include="..\AuthUserRepository\AuthRepository.csproj" />
+    <ProjectReference Include="..\AuthBusinessLayerAbstraction\AuthBusinessLayerAbstraction.csproj" />
+  </ItemGroup>
+
+</Project>

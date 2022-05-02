@@ -1,0 +1,77 @@
+version: '3.4'
+
+services:
+  authapi:
+    image: authapi:latest
+    container_name: authapi
+    restart: always
+    build:
+      context: .
+      dockerfile: AuthApi/Dockerfile
+    environment:
+        - ASPNETCORE_ENVIRONMENT=Development
+        - ASPNETCORE_URLS=https://+:443;http://+:80
+    ports:
+        - "5000:80"
+        - "5001:443"
+    volumes:
+        - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+        - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    networks:
+        - kittensapi
+
+  webapi:
+    image: webapi:latest
+    container_name: webapi
+    restart: always
+    build:
+      context: .
+      dockerfile: WebApi/Dockerfile
+    environment:
+        - ASPNETCORE_ENVIRONMENT=Development
+        - ASPNETCORE_URLS=https://+:443;http://+:80
+    ports:
+        - "5002:80"
+        - "5003:443"
+    volumes:
+        - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+        - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    networks:
+        - kittensapi
+
+  postgresqldb:
+      image: postgres:latest
+      container_name: postgres.db
+      restart: always
+      environment:
+          - POSTGRES_USER=postgres
+          - POSTGRES_PASSWORD=test
+      ports:
+          - "5432:5432"
+      volumes:
+          - postgres-data:/var/lib/postgresql/data/
+      networks:
+          - kittensapi
+
+  pgadmin:
+      image: dpage/pgadmin4:latest
+      container_name: pgadmin
+      restart: always
+      environment:
+          - PGADMIN_DEFAULT_EMAIL=pgadmin4@pgadmin.org
+          - PGADMIN_DEFAULT_PASSWORD=test
+      ports:
+          - "5050:80"
+      depends_on:
+          - postgresqldb
+      volumes:
+          - pgadmin-data:/root/.pgadmin
+      networks:
+          - kittensapi
+networks:
+    kittensapi:
+        driver: bridge
+
+volumes:
+    postgres-data:
+    pgadmin-data:

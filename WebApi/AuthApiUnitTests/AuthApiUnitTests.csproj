@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.10" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
+    <PackageReference Include="Moq" Version="4.16.1" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.collector" Version="3.1.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AuthApiAbstraction\AuthApiAbstraction.csproj" />
+    <ProjectReference Include="..\AuthApiFluentValidationAbstraction\AuthApiFluentValidationAbstraction.csproj" />
+    <ProjectReference Include="..\AuthApiFluentValidation\AuthApiFluentValidation.csproj" />
+    <ProjectReference Include="..\AuthApi\AuthApi.csproj" />
+    <ProjectReference Include="..\AuthBusinessLayerAbstraction\AuthBusinessLayerAbstraction.csproj" />
+    <ProjectReference Include="..\AuthBusinessLayer\AuthBusinessLayer.csproj" />
+    <ProjectReference Include="..\AuthDataLayer\AuthDataLayer.csproj" />
+    <ProjectReference Include="..\AuthRepositoryAbstraction\AuthRepositoryAbstraction.csproj" />
+    <ProjectReference Include="..\AuthServiceAbstraction\AuthServiceAbstraction.csproj" />
+    <ProjectReference Include="..\AuthService\AuthService.csproj" />
+    <ProjectReference Include="..\AuthUserRepository\AuthRepository.csproj" />
+  </ItemGroup>
+
+</Project>

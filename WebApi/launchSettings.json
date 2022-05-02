@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "serviceActions": {
+        "authapi": "StartWithoutDebugging",
+        "webapi": "StartWithoutDebugging"
+      },
+      "commandVersion": "1.0"
+    }
+  }
+}
